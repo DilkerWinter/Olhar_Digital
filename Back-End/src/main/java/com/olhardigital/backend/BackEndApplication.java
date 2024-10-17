@@ -1,5 +1,6 @@
 package com.olhardigital.backend;
 
+import com.olhardigital.backend.Model.Produto;
 import com.olhardigital.backend.Model.Venda;
 import com.olhardigital.backend.Model.Venda_Itens;
 import org.springframework.boot.SpringApplication;
