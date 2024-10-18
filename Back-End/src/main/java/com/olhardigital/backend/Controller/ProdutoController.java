@@ -33,6 +33,7 @@ public class ProdutoController {
             Produto produtoAtualizado = produto.get();
             produtoAtualizado.setNome(produtoNovo.getNome());
             produtoAtualizado.setDescricao(produtoNovo.getDescricao());
+            produtoAtualizado.setQuantidade(produtoNovo.getQuantidade());
             produtoAtualizado.setValor(produtoNovo.getValor());
             produtoAtualizado.setDescricao(produtoNovo.getDescricao());
             return ResponseEntity.ok(produtoService.salvarOuAtualizar(produtoAtualizado));
