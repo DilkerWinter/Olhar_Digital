@@ -5,6 +5,7 @@ import com.olhardigital.backend.Model.Venda;
 import com.olhardigital.backend.Model.VendaItens;
 import com.olhardigital.backend.Repository.VendaItensRepository;
 import com.olhardigital.backend.Repository.VendaRepository;
+import jakarta.persistence.Id;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -60,11 +61,12 @@ public class VendaService {
 
 
     public void deletarVenda(int id){
-        Optional<Venda> venda = vendaRepository.findById(id);
-        if(venda.isPresent()) {
-            vendaRepository.delete(venda.get());
-        }
-        else throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        vendaRepository.deleteById(id);
+    }
+
+    public Optional<Venda> buscaPorId(int id){
+        return vendaRepository.findById(id);
+
     }
 }
 
