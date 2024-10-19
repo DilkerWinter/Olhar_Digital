@@ -8,9 +8,9 @@ import lombok.ToString;
 @Entity
 @Table (name = "venda_itens")
 @Getter @Setter @ToString
-public class Venda_Itens {
+public class VendaItens {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @ManyToOne(fetch = FetchType.LAZY)

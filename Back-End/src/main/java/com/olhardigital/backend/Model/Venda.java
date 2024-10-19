@@ -13,7 +13,7 @@ import java.sql.Date;
 public class Venda {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Enumerated(EnumType.STRING)
@@ -28,4 +28,7 @@ public class Venda {
 
     @Column(nullable = false)
     private double valorTotal;
+
+    @Column
+    private boolean isValida;
 }
