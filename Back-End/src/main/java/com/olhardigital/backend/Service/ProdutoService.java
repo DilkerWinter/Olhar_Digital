@@ -29,5 +29,4 @@ public class ProdutoService {
     public Optional<Produto> buscaPorId(int id) {
         return produtoRepository.findById(id);
     }
-
 }

@@ -26,4 +26,6 @@ public class Venda {
     @Column(nullable = false)
     private Date dataVenda;
 
+    @Column(nullable = false)
+    private double valorTotal;
 }

@@ -52,4 +52,18 @@ public class ProdutoController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Produto> buscaPorId(@PathVariable int id) {
+        Optional<Produto> produto = produtoService.buscaPorId(id);
+
+        if (produto.isPresent()) {
+            return ResponseEntity.ok(produto.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
+
 }
