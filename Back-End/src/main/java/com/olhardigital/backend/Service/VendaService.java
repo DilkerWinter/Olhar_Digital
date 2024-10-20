@@ -5,7 +5,6 @@ import com.olhardigital.backend.Model.Venda;
 import com.olhardigital.backend.Model.VendaItens;
 import com.olhardigital.backend.Repository.VendaItensRepository;
 import com.olhardigital.backend.Repository.VendaRepository;
-import jakarta.persistence.Id;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,13 +42,17 @@ public class VendaService {
                         "Produto " + produto.getNome() + " não pode ser comprado, pois não há quantidade disponível no estoque.");
             }
 
-            produto.setQuantidade(produto.getQuantidade() - vendaItens.getQuantidade());
-            produtoService.salvarOuAtualizar(produto);
-
             valorTotal += (produto.getValor() * vendaItens.getQuantidade());
             vendaItens.setProduto(produto);
             vendaItens.setVenda(venda);
             vendaItensRepository.save(vendaItens);
+        }
+
+        for (VendaItens vendaItens : Itens) {
+            Optional<Produto> produto = produtoService.buscaPorId(vendaItens.getProduto().getId());
+
+            produto.get().setQuantidade(produto.get().getQuantidade() - vendaItens.getQuantidade());
+            produtoService.salvarOuAtualizar(produto.orElse(null));
         }
 
 
@@ -61,7 +63,11 @@ public class VendaService {
 
 
     public void deletarVenda(int id){
+        vendaItensRepository.deleteByVendaId(id);
         vendaRepository.deleteById(id);
+    }
+    public Optional<ResponseEntity>  buscarVendaCompleta(int id){
+
     }
 
     public Optional<Venda> buscaPorId(int id){
