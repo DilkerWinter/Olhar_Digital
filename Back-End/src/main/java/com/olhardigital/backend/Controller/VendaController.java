@@ -1,15 +1,15 @@
 package com.olhardigital.backend.Controller;
 
+import com.olhardigital.backend.Model.Produto;
+import com.olhardigital.backend.Model.Utils.VendaResponse;
 import com.olhardigital.backend.Model.Venda;
-import com.olhardigital.backend.Model.VendaRequest;
-import com.olhardigital.backend.Service.ProdutoService;
+import com.olhardigital.backend.Model.Utils.VendaRequest;
 import com.olhardigital.backend.Service.VendaService;
-import lombok.experimental.Delegate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -21,7 +21,7 @@ public class VendaController {
 
     @PostMapping
     public ResponseEntity<Venda> criarVendaComItens(@RequestBody VendaRequest vendaRequest){
-        ResponseEntity<Venda> response = vendaService.salvarVendaComIten(vendaRequest.getVenda(), vendaRequest.getItens());
+        ResponseEntity<Venda> response = vendaService.salvarVendaComItens(vendaRequest.getVenda(), vendaRequest.getItens());
 
         return response;
 
@@ -46,6 +46,11 @@ public class VendaController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/todos/{id}")
+    public ResponseEntity<VendaResponse> buscarProdutosPorVendaId(@PathVariable int id) {
+        return vendaService.buscarProdutosPorVendaId(id);
     }
 
 

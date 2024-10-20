@@ -1,4 +1,4 @@
-package com.olhardigital.backend.Model;
+package com.olhardigital.backend.Model.Utils;
 
 public enum FormaPagamento {
     CREDITO,
