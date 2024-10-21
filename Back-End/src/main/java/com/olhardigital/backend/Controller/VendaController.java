@@ -22,9 +22,7 @@ public class VendaController {
     @PostMapping
     public ResponseEntity<Venda> criarVendaComItens(@RequestBody VendaRequest vendaRequest){
         ResponseEntity<Venda> response = vendaService.salvarVendaComItens(vendaRequest.getVenda(), vendaRequest.getItens());
-
         return response;
-
     }
 
     @DeleteMapping("/{id}")
@@ -38,7 +36,7 @@ public class VendaController {
         }
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/buscaPorId/{id}")
     public ResponseEntity<Venda> buscarPorId(@PathVariable  int id){
         Optional<Venda> venda = vendaService.buscaPorId(id);
         if (venda.isPresent()) {
@@ -48,7 +46,7 @@ public class VendaController {
         }
     }
 
-    @GetMapping("/todos/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<VendaResponse> buscarProdutosPorVendaId(@PathVariable int id) {
         return vendaService.buscarProdutosPorVendaId(id);
     }

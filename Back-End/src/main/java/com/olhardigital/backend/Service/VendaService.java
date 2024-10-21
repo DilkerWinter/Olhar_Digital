@@ -43,26 +43,20 @@ public class VendaService {
                         "Produto " + produto.getNome() + " não pode ser comprado, pois não há quantidade disponível no estoque.");
             }
 
-            // Calcular o valor total com base no preço e quantidade
             valorTotal += (produto.getValor() * vendaItens.getQuantidade());
 
-            // Setar a venda e o produto nos itens
             vendaItens.setProduto(produto);
             vendaItens.setVenda(venda);
         }
 
-        // Definir o valor total da venda
         venda.setValorTotal(valorTotal);
         venda.setValida(true);
 
-        // Salvar a venda primeiro
         Venda vendaSalva = vendaRepository.save(venda);
 
-        // Agora salvar os itens, pois a venda já foi persistida
         for (VendaItens vendaItens : itens) {
             vendaItensRepository.save(vendaItens);
 
-            // Atualizar o estoque do produto
             Produto produto = vendaItens.getProduto();
             produto.setQuantidade(produto.getQuantidade() - vendaItens.getQuantidade());
             produtoService.salvarOuAtualizar(produto);
@@ -96,7 +90,10 @@ public class VendaService {
 
     public Optional<Venda> buscaPorId(int id){
         return vendaRepository.findById(id);
-
     }
+
+    
+
+
 }
 
