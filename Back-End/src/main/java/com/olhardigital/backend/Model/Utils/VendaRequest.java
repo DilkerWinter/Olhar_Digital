@@ -1,4 +1,6 @@
-package com.olhardigital.backend.Model;
+package com.olhardigital.backend.Model.Utils;
+import com.olhardigital.backend.Model.Venda;
+import com.olhardigital.backend.Model.VendaItens;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
