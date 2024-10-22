@@ -51,6 +51,11 @@ public class VendaController {
         return vendaService.buscarProdutosPorVendaId(id);
     }
 
+    @GetMapping("/buscaTodas")
+    public ResponseEntity<List<VendaResponse>> buscarTodasVendas(){
+        return vendaService.buscarTodosVendas();
+    }
+
 
 
 }

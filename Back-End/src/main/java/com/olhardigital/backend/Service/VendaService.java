@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -88,8 +89,24 @@ public class VendaService {
         return ResponseEntity.ok(vendaResponse);
     }
 
+
+
     public Optional<Venda> buscaPorId(int id){
         return vendaRepository.findById(id);
+    }
+
+
+    public ResponseEntity<List<VendaResponse>> buscarTodosVendas(){
+        List<Venda> vendas = vendaRepository.findAll();
+        List<VendaResponse> vendaResponses = new ArrayList<>();
+        for (Venda venda : vendas) {
+            List<Produto> produtos = vendaItensRepository.findProdutosByVendaId(venda.getId());
+            VendaResponse vendaResponse = new VendaResponse();
+            vendaResponse.setVenda(venda);
+            vendaResponse.setProdutos(produtos);
+            vendaResponses.add(vendaResponse);
+        }
+        return ResponseEntity.ok(vendaResponses);
     }
 
     
