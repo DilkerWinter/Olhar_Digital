@@ -5,6 +5,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'bannerHeader-bg': "url('/assets/banner.png')", 
+      },
+
+
       spacing: {
         'card_home_container_h': '45rem',
         'card_home_container_w': '80rem',
