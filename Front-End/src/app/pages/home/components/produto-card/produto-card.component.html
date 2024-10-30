@@ -1,8 +1,22 @@
-<div class="bg-slate-500 h-full rounded-3xl flex items-center">
-    <img>
-    <p>Nome produto</p>
-    <p>Valor</p>
-    <p>Descricao</p>
-    <p>Quantidade</p>
-    <input type="button">
+<div class="bg-white h-card_home_container_h rounded-3xl flex flex-col shadow-xl shadow-black/50">
+    <div class="h-1/2 flex items-center justify-center overflow-hidden rounded-t-3xl">
+        <img src="{{urlImagem}}" class="w-full h-full object-cover">
+    </div>
+    <div class="flex flex-col p-2"> 
+        <div class="flex justify-between items-center m-4 p-2"> 
+            <p class="font-bold text-left">{{nomeProduto}}</p>
+            <div class="bg-green-500 rounded-3xl">
+                <p class="text-right p-2">{{textPrefixValor}} {{valorProduto}}</p>
+            </div>
+        </div>
+        <div class="flex justify-between items-center m-4"> 
+            <div class="bg-gray-300 rounded-3xl max-w-xs"> 
+                <p class="p-2 text-left overflow-hidden text-ellipsis whitespace-nowrap">{{descProduto}}</p> 
+            </div>
+            <p class="mt-4 text-gray-500 text-right pb-4">{{qntProduto}} {{textPrefixQnt}}</p>
+        </div>
+        <div class="flex justify-center mt-6 mb-4">
+            <input type="button" class="bg-cyan-500 rounded-3xl p-4 pr-12 pl-12 w-fit text-lg text-white" value="Adicionar">
+        </div>
+    </div>
 </div>

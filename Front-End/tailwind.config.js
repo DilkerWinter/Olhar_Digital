@@ -11,8 +11,7 @@ module.exports = {
 
 
       spacing: {
-        'card_home_container_h': '45rem',
-        'card_home_container_w': '80rem',
+        'card_home_container_h': '35rem',
       }
     },
   },

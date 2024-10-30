@@ -2,15 +2,8 @@
 <body>
   <div class="flex items-center justify-center flex-col m-20">
     <h1 class="text-4xl underline font-semibold">Lista de Produtos</h1>
-    <div class="h-card_home_container_h w-full bg-slate-800/25 m-20 rounded-3xl grid grid-cols-4 gap-4 p-4">
-      <app-produto-card></app-produto-card>
-      <app-produto-card></app-produto-card>
-      <app-produto-card></app-produto-card>
-      <app-produto-card></app-produto-card>
-      <app-produto-card></app-produto-card>
-      <app-produto-card></app-produto-card>
-      <app-produto-card></app-produto-card>
-      <app-produto-card></app-produto-card>
+    <div class="h-fit w-full bg-gray-500/50 m-20 rounded-3xl grid grid-cols-4 gap-8 pl-10 pr-10 pb-10 pt-10">
+      <app-produto-card *ngFor="let produto of produtos" [produto]="produto"></app-produto-card>
     </div>
     
     
