@@ -1,4 +1,5 @@
 export class Produto {
+    
     private id: number;
     private nome: string;
     private descricao: string;
