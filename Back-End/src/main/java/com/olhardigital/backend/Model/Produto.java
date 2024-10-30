@@ -26,4 +26,7 @@ public class Produto {
     @Column(nullable = false)
     private double valor;
 
+    @Column
+    private String urlImagem;
+
 }
