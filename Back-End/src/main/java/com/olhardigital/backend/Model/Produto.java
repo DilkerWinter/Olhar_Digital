@@ -29,4 +29,5 @@ public class Produto {
     @Column
     private String urlImagem;
 
+
 }
