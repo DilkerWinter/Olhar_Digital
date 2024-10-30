@@ -17,6 +17,7 @@ public class ProdutoController {
     private ProdutoService produtoService;
 
     @GetMapping
+    @CrossOrigin ("http://localhost:4200/")
     public List<Produto> listarTodos() {
         return produtoService.listarTodos();
     }

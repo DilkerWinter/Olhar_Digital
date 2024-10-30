@@ -23,11 +23,12 @@ export class ProdutoCardComponent implements OnInit {
 
   ngOnInit() {
     if (this.produto) {
-      this.nomeProduto = this.produto.getNome();
-      this.descProduto = this.produto.getDescricao();
-      this.valorProduto = this.produto.getValor().toFixed(2).replace('.', ',');
-      this.qntProduto = this.produto.getQuantidade();
-      this.urlImagem = this.produto.getUrlImage();
+      this.nomeProduto = this.produto?.getNome() || '';
+      this.descProduto = this.produto?.getDescricao() || '';
+      this.valorProduto = (this.produto?.getValor() || 0).toFixed(2).replace('.', ',');
+      this.qntProduto = this.produto?.getQuantidade() || 0;
+      this.urlImagem = this.produto?.getUrlImage() || '';
     }
   }
+  
 }
