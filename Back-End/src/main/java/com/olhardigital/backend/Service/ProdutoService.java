@@ -19,6 +19,9 @@ public class ProdutoService {
     }
 
     public Produto salvarOuAtualizar(Produto produto) {
+        if (produto.getUrlImagem() == null || produto.getUrlImagem().isEmpty()){
+            produto.setUrlImagem("https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png");
+        }
         return produtoRepository.save(produto);
     }
 

@@ -1,0 +1,14 @@
+<app-header></app-header>
+<body>
+  <div class="flex items-center justify-center flex-col m-20">
+    <h1 class="text-4xl underline font-semibold">Lista de Produtos</h1>
+    <div
+      class="h-fit w-full bg-stone-100 m-20 rounded-3xl grid grid-cols-4 gap-8 pl-10 pr-10 pb-10 pt-10"
+    >
+      <app-produto-card
+        *ngFor="let produto of produtos"
+        [produto]="produto"
+      ></app-produto-card>
+    </div>
+  </div>
+</body>
