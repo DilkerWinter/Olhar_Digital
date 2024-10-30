@@ -36,6 +36,7 @@ public class ProdutoController {
             produtoAtualizado.setQuantidade(produtoNovo.getQuantidade());
             produtoAtualizado.setValor(produtoNovo.getValor());
             produtoAtualizado.setDescricao(produtoNovo.getDescricao());
+            produtoAtualizado.setUrlImagem(produtoNovo.getUrlImagem());
             return ResponseEntity.ok(produtoService.salvarOuAtualizar(produtoAtualizado));
         }else {
             return ResponseEntity.notFound().build();
