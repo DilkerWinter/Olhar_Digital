@@ -4,12 +4,12 @@ import { HomeComponent } from "./pages/home/home.component";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { ProdutoService } from './services/produto.service';
-
+import { MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HomeComponent, FontAwesomeModule, HttpClientModule,],
+  imports: [RouterOutlet, HomeComponent, FontAwesomeModule, HttpClientModule, MatDialogModule,],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'] 
 })

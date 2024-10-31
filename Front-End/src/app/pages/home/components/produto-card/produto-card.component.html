@@ -1,10 +1,17 @@
 <div
-  class="bg-white h-card_home_container_h rounded-3xl flex flex-col shadow-xl shadow-black/50"
+  class="bg-white h-card_home_container_h rounded-3xl z-50 flex flex-col shadow-xl shadow-black/50"
 >
   <div
-    class="h-1/2 flex items-center justify-center overflow-hidden rounded-t-3xl"
+    class="relative h-1/2 flex items-center justify-center overflow-hidden rounded-t-3xl z-10"
   >
     <img src="{{ urlImagem }}" class="w-full h-full object-cover" />
+    
+    <button 
+  class="absolute top-2 right-2 bg-gray-800/50 rounded-3xl p-1  pl-2 pr-2 text-white cursor-pointer hover:bg-gray-700"
+  (click)="onEditClick()">
+  <fa-icon class="text-xl" [icon]="faPen"></fa-icon>
+</button>
+
   </div>
   <div class="flex flex-col p-2">
     <div class="flex justify-between items-center m-4 p-2">
@@ -30,7 +37,7 @@
     <div class="flex justify-center mt-6 mb-4">
       <input
         type="button"
-        class="bg-stone-500 rounded-3xl p-4 pr-12 pl-12 w-fit text-lg text-white"
+        class="bg-gray-700 rounded-3xl p-4 pr-12 pl-12 w-fit text-lg text-white"
         value="Adicionar"
       />
     </div>

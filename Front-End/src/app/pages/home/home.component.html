@@ -1,14 +1,14 @@
-<app-header class="fixed top-0 left-0 w-full" ></app-header>
-<body>
+<app-header class="fixed top-0 left-0 w-full z-50" ></app-header>
+<div>
   <div class="flex items-center justify-center flex-col m-20">
     <h1 class="text-4xl underline font-semibold">Lista de Produtos</h1>
     <div
-      class="h-fit w-full bg-stone-100 m-32 rounded-3xl grid grid-cols-4 gap-8 pl-10 pr-10 pb-20 pt-10 shadow-2xl "
+      class="h-fit w-full bg-stone-200 m-32 rounded-3xl grid grid-cols-4 gap-8 pl-10 pr-10 pb-20 pt-10 shadow-2xl "
     >
-      <app-produto-card
+      <app-produto-card class="z-10"
         *ngFor="let produto of produtos"
         [produto]="produto"
       ></app-produto-card>
     </div>
   </div>
-</body>
+</div>
