@@ -10,15 +10,10 @@ import { Produto } from '../../../../models/produto';
   styleUrl: './produto-dialog.component.css'
 })
 export class ProdutoDialogComponent {
-teste() {
-throw new Error('Method not implemented.');
-}
-  onSave() {
-  throw new Error('Method not implemented.');
-  }
-  onCancel() {
-  throw new Error('Method not implemented.');
-  }
+
+  nomeProduto: string; 
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: { produto: Produto }) {
+    this.nomeProduto = this.data.produto.getNome();
   }
 }

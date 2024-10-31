@@ -41,7 +41,6 @@ export class ProdutoCardComponent implements OnInit {
 
   onEditClick() {
     this.dialog.open(ProdutoDialogComponent, {
-      width: '400px',
       data: { produto: this.produto } 
     });
   }
