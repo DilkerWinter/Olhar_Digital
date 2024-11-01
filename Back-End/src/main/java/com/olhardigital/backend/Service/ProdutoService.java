@@ -3,6 +3,7 @@ package com.olhardigital.backend.Service;
 import com.olhardigital.backend.Model.Produto;
 import com.olhardigital.backend.Repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,9 +16,9 @@ public class ProdutoService {
     private ProdutoRepository produtoRepository;
 
     public List<Produto> listarTodos() {
-        return produtoRepository.findAll();
+        return produtoRepository.findAll(Sort.by("id"));
     }
-
+    
     public Produto salvarOuAtualizar(Produto produto) {
         if (produto.getUrlImagem() == null || produto.getUrlImagem().isEmpty()){
             produto.setUrlImagem("https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png");
