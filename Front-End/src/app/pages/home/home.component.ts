@@ -33,4 +33,8 @@ export class HomeComponent {
       }
     );
   }
+
+  onProdutoUpdated() {
+    this.fetchProdutos(); 
+  }
 }

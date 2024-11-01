@@ -8,6 +8,7 @@
       <app-produto-card class="z-10"
         *ngFor="let produto of produtos"
         [produto]="produto"
+        (produtoUpdated)="onProdutoUpdated()"
       ></app-produto-card>
     </div>
   </div>
