@@ -1,0 +1,8 @@
+<h1 class="text-xl font-bold text-center text-gray-800" mat-dialog-title>Confirmar Alteração</h1>
+<div class="p-4" mat-dialog-content>
+  <p class="text-gray-700">Você tem certeza que deseja salvar?</p>
+</div>
+<div class="flex justify-end space-x-2 p-4" mat-dialog-actions>
+  <button class="px-4 py-2 text-white bg-gray-800/50 rounded hover:bg-gray-700/50" mat-button (click)="onCancel()">Cancelar</button>
+  <button class="px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600" mat-button (click)="onConfirm()">Salvar</button>
+</div>

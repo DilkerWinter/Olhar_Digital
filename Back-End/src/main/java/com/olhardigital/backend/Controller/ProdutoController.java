@@ -17,7 +17,6 @@ public class ProdutoController {
     private ProdutoService produtoService;
 
     @GetMapping
-    @CrossOrigin ("http://localhost:4200/")
     public List<Produto> listarTodos() {
         return produtoService.listarTodos();
     }
@@ -27,7 +26,7 @@ public class ProdutoController {
         return produtoService.salvarOuAtualizar(produto);
     }
 
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Produto> atualizarProduto(@PathVariable int id, @RequestBody Produto produtoNovo){
         Optional<Produto> produto = produtoService.buscaPorId(id);
         if (produto.isPresent()) {

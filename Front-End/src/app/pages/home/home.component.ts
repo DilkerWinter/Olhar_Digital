@@ -5,6 +5,8 @@ import { Produto } from '../../models/produto';
 import { CommonModule } from '@angular/common';
 import { ProdutoService } from '../../services/produto.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
+import { CriarProdutoDialogComponent } from './components/criar-produto-dialog/criar-produto-dialog.component';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
 export class HomeComponent {
   produtos: Produto[] = [];
 
-  constructor(private produtoService: ProdutoService) {}
+  constructor(private produtoService: ProdutoService, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.fetchProdutos(); 
@@ -26,11 +28,25 @@ export class HomeComponent {
   fetchProdutos() {
     this.produtoService.getProdutos().subscribe(
       (produtos: any[]) => {
-        this.produtos = produtos.map(p => new Produto(p.id, p.nome, p.descricao, p.quantidade, p.valor, p.urlImagem));
+        this.produtos = produtos.map(p => new Produto(p.id, p.nome, p.descricao, p.valor,p.quantidade, p.urlImagem));
       },
       (error) => {
         console.error('Error fetching produtos:', error); 
       }
     );
+  }
+
+  onProdutoUpdated() {
+    this.fetchProdutos(); 
+  }
+
+  criarNovoProduto() {
+    const dialogRef = this.dialog.open(CriarProdutoDialogComponent);
+    
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.ngOnInit(); 
+      }
+    });
   }
 }

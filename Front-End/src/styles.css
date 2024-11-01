@@ -2,3 +2,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.mdc-dialog__surface {
+    background-color: #ffffff !important;
+    border-radius: 1.5rem !important;
+    border: solid 4px #374151 !important;
+    box-shadow: 0 10px 15px -3px #374151, 0 4px 6px -4px #374151 !important;
+}
+  

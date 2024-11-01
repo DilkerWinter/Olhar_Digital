@@ -1,31 +1,42 @@
 <header class="">
-  <div
-    class="h-20 w-full flex justify-start items-center px-5 shadow-2xl border-b-2 border-solid border-black bg-bannerHeader-bg bg-no-repeat bg-cover bg-center"
-  >
-    <h1 class="text-5xl font-bold text-stone-300">Olhar Digital</h1>
+  <div class="h-32 w-full flex justify-between bg-position-10-60 items-center px-5 shadow-2xl border-b-2 border-solid border-black bg-bannerHeader-bg bg-no-repeat bg-cover">
+    <h1 class="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-t from-slate-100 to-black border-solid border-black">
+      Olhar Digital
+    </h1>
   </div>
-  <nav
-    class="flex flex-wrap justify-center items-center space-x-4 md:space-x-8 bg-gray-200 p-4"
-  >
-    <h1 class="text-xl">
+  <nav class="flex flex-wrap justify-center items-center space-x-4 md:space-x-8 bg-gray-200 p-4">
+    <h2 class="text-xl">
       <a
-        href="#"
-        class="flex items-center transition duration-300 ease-in-out hover:text-blue-500"
+        href="/produtos"
+        [ngClass]="{'text-blue-500': isActive('/produtos'), 'hover:text-blue-500': !isActive('/produtos')}"
+        class="flex items-center transition duration-300 ease-in-out"
+        aria-label="Estoque de Produtos"
+      >
+        <fa-icon class="text-2xl" [icon]="faGlasses"></fa-icon>
+        <span class="ml-2">Estoque de Produtos</span>
+      </a>
+    </h2>
+    <h2 class="text-xl">
+      <a
+        href="/vendas"
+        [ngClass]="{'text-blue-500': isActive('/vendas'), 'hover:text-blue-500': !isActive('/vendas')}"
+        class="flex items-center transition duration-300 ease-in-out"
         aria-label="Gerenciamento de Vendas"
       >
         <fa-icon class="text-2xl" [icon]="faList"></fa-icon>
         <span class="ml-2">Gerenciamento de Vendas</span>
       </a>
-    </h1>
-    <h1 class="text-xl">
+    </h2>
+    <h2 class="text-xl">
       <a
-        href="#"
-        class="flex items-center transition duration-300 ease-in-out hover:text-blue-500"
+        href="/carrinho"
+        [ngClass]="{'text-blue-500': isActive('/carrinho'), 'hover:text-blue-500': !isActive('/carrinho')}"
+        class="flex items-center transition duration-300 ease-in-out"
         aria-label="Carrinho de Compras"
       >
         <fa-icon class="text-2xl" [icon]="faBasket"></fa-icon>
         <span class="ml-2">Carrinho de Compras</span>
       </a>
-    </h1>
+    </h2>
   </nav>
 </header>

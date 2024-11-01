@@ -1,14 +1,15 @@
-<app-header></app-header>
-<body>
+<div class="mt-header_spacing">
   <div class="flex items-center justify-center flex-col m-20">
-    <h1 class="text-4xl underline font-semibold">Lista de Produtos</h1>
+    <input type="button" value="Criar Novo Produto" class="bg-gray-700 text-white text-lg font-semibold mt-10 py-6 px-8 rounded-2xl shadow-xl hover:bg-gray-800 cursor-pointer" (click)="criarNovoProduto()">
+
     <div
-      class="h-fit w-full bg-stone-100 m-20 rounded-3xl grid grid-cols-4 gap-8 pl-10 pr-10 pb-10 pt-10"
+      class="h-fit w-full bg-stone-200 m-32 mt-20 rounded-3xl grid grid-cols-4 gap-8 pl-10 pr-10 pb-20 pt-10 shadow-2xl "
     >
-      <app-produto-card
+      <app-produto-card class="z-10"
         *ngFor="let produto of produtos"
         [produto]="produto"
+        (produtoUpdated)="onProdutoUpdated()"
       ></app-produto-card>
     </div>
   </div>
-</body>
+</div>
