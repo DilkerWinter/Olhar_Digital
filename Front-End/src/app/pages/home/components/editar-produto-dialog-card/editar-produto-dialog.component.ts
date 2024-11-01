@@ -69,19 +69,18 @@ export class EditarProdutoDialogComponent {
   }
 
   deletarProduto() {
-    /*if (this.idProduto !== null) {
+    if (this.idProduto) {
       this.produtoService.deletarProduto(this.idProduto).subscribe(
         () => {
-          this.dialogRef.close({ deleted: true });
+          console.log('Produto deletado com sucesso');
+          this.dialogRef.close(true); 
+          this.productUpdated.emit(); 
         },
         (error: any) => {
           console.error('Erro ao deletar produto:', error);
-          // Trate o erro como necessário (exibir mensagem, etc.)
         }
       );
-    } else {
-      // Caso não haja id, apenas feche o diálogo
-      this.dialogRef.close({ deleted: false });
-    }*/
+    }
   }
+  
 }

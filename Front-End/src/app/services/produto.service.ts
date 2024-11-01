@@ -2,6 +2,7 @@ import { Injectable, forwardRef, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Produto } from '../models/produto';
+import { error } from 'console';
 
 @Injectable({
   providedIn: 'root',  
@@ -23,5 +24,11 @@ export class ProdutoService {
     } else {
       return this.http.post<Produto>(this.apiUrl, produto);
     }
+  }
+
+  deletarProduto(idProduto: number): Observable<Produto>{
+    const urlDeletar = `${this.apiUrl}/${idProduto}`;
+    
+    return this.http.delete<Produto>(urlDeletar);
   }
 }
