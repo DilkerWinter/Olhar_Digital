@@ -26,7 +26,7 @@ export class HomeComponent {
   fetchProdutos() {
     this.produtoService.getProdutos().subscribe(
       (produtos: any[]) => {
-        this.produtos = produtos.map(p => new Produto(p.id, p.nome, p.descricao, p.quantidade, p.valor, p.urlImagem));
+        this.produtos = produtos.map(p => new Produto(p.id, p.nome, p.descricao, p.valor,p.quantidade, p.urlImagem));
       },
       (error) => {
         console.error('Error fetching produtos:', error); 

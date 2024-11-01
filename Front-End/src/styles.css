@@ -7,7 +7,7 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .mdc-dialog__surface {
-    background-color: #374151 !important;
+    background-color: #ffffff !important;
     border-radius: 1.5rem !important;
     border: solid 4px #374151 !important;
     box-shadow: 0 10px 15px -3px #374151, 0 4px 6px -4px #374151 !important;

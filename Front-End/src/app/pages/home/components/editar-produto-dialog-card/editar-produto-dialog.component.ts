@@ -4,6 +4,9 @@ import { Produto } from '../../../../models/produto';
 import { FormsModule } from '@angular/forms';
 import { ProdutoService } from '../../../../services/produto.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ConfirmarDeleteProdutoComponent } from './components/confirmar-delete-produto/confirmar-delete-produto.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmarSalvarProdutoComponent } from './components/confirmar-salvar-produto/confirmar-salvar-produto.component';
 
 @Component({
   selector: 'app-produto-dialog',
@@ -25,6 +28,7 @@ export class EditarProdutoDialogComponent {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { produto: Produto },
+    private dialog: MatDialog,
     private dialogRef: MatDialogRef<EditarProdutoDialogComponent>,
     private produtoService: ProdutoService 
   ) {
@@ -37,31 +41,38 @@ export class EditarProdutoDialogComponent {
   }
 
   salvarProduto() {
-   const produtoAtualizado = new Produto(
-      this.idProduto, 
-      this.nomeProduto,
-      this.descProduto,
-      this.valorProduto,
-      this.qntProduto,
-      this.urlImgProduto,
-    );
 
+    const dialogRef = this.dialog.open(ConfirmarSalvarProdutoComponent);
     
-    if (!this.isProdutoValid(produtoAtualizado)) {
-      console.error('Produto inválido!');
-      return; 
-    }
-
-    this.produtoService.salvaOuEditaProduto(produtoAtualizado).subscribe(
-      (produtoSalvo) => {
-        console.log(produtoSalvo)
-        this.dialogRef.close(produtoSalvo);
-        this.productUpdated.emit(produtoSalvo);
-      },
-      (error) => {
-        console.error('Erro ao salvar produto:', error);
+    dialogRef.afterClosed().subscribe(result =>{
+      if(result){
+        const produtoAtualizado = new Produto(
+          this.idProduto, 
+          this.nomeProduto,
+          this.descProduto,
+          this.valorProduto,
+          this.qntProduto,
+          this.urlImgProduto,
+        );
+    
+        
+        if (!this.isProdutoValid(produtoAtualizado)) {
+          console.error('Produto inválido!');
+          return; 
+        }
+    
+        this.produtoService.salvaOuEditaProduto(produtoAtualizado).subscribe(
+          (produtoSalvo) => {
+            console.log(produtoSalvo)
+            this.dialogRef.close(produtoSalvo);
+            this.productUpdated.emit(produtoSalvo);
+          },
+          (error) => {
+            console.error('Erro ao salvar produto:', error);
+          }
+        );
       }
-    );
+    })
   }
 
   isProdutoValid(produto: Produto): boolean {
@@ -69,18 +80,24 @@ export class EditarProdutoDialogComponent {
   }
 
   deletarProduto() {
-    if (this.idProduto) {
-      this.produtoService.deletarProduto(this.idProduto).subscribe(
-        () => {
-          console.log('Produto deletado com sucesso');
-          this.dialogRef.close(true); 
-          this.productUpdated.emit(); 
-        },
-        (error: any) => {
-          console.error('Erro ao deletar produto:', error);
+    const dialogRef = this.dialog.open(ConfirmarDeleteProdutoComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        if (this.idProduto) {
+          this.produtoService.deletarProduto(this.idProduto).subscribe(
+            () => {
+              console.log('Produto deletado com sucesso');
+              this.dialogRef.close(true); 
+              this.productUpdated.emit(); 
+            },
+            (error: any) => {
+              console.error('Erro ao deletar produto:', error);
+            }
+          );
         }
-      );
-    }
+      }
+    });
   }
   
 }
