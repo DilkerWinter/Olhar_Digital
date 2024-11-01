@@ -1,0 +1,31 @@
+<div class="bg-gray-200 h-full w-full flex flex-col items-center p-5">
+    <h1 class="text-center text-2xl mb-4 font-semibold">Editar Produto</h1>
+
+    <div class="grid grid-cols-2 gap-4 w-3/4 pt-5">
+        <div class="flex flex-col space-y-2">
+            <label for="nome">Nome</label>
+            <input id="nome" type="text" class="p-2 border border-gray-300 rounded" [(ngModel)]="nomeProduto">
+            
+            <label for="descricao">Descrição do Produto</label>
+            <input id="descricao" type="text" class="p-2 border border-gray-300 rounded" [(ngModel)]="descProduto">
+            
+            <label for="valor">Valor</label>
+            <input id="valor" type="number" min="0" step="0.01" class="p-2 border border-gray-300 rounded" [(ngModel)]="valorProduto">
+        </div>
+
+        <div class="flex flex-col space-y-2">
+            <label for="quantidade">Quantidade Disponível</label>
+            <input id="quantidade" type="number" min="0" class="p-2 border border-gray-300 rounded" [(ngModel)]="qntProduto">
+
+            <label for="url">URL da imagem</label>
+            <input id="url" type="text" class="p-2 border border-gray-300 rounded"  [(ngModel)]="urlImgProduto">
+
+            <div class="flex space-x-4 pt-8">
+                <div class="ml-auto">
+                    <button type="button" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600" (click)="criarProduto()">Salvar</button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
