@@ -1,6 +1,6 @@
 export class Produto {
     
-    private id: number | null; // Permitir que id seja null
+    private id: number | null; 
     private nome: string;
     private descricao: string;
     private valor: number;
@@ -8,14 +8,14 @@ export class Produto {
     private urlImagem: string;
 
     constructor(
-        id: number | null, // Permitir que id seja null no construtor
+        id: number | null, 
         nome: string,
         descricao: string,
         valor: number,
         quantidade: number,
         urlImage: string,
     ) {
-        this.id = id; // Armazenar o id que pode ser null
+        this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.valor = valor; 
@@ -23,11 +23,11 @@ export class Produto {
         this.urlImagem = urlImage; 
     }
 
-    getId(): number | null { // Permitir que getId retorne null
+    getId(): number | null {
         return this.id;
     }
 
-    setId(value: number | null) { // Método para definir o id, permitindo null
+    setId(value: number | null) {
         this.id = value;
     }
 
