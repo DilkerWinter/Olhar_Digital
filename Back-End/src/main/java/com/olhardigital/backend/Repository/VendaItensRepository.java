@@ -21,4 +21,5 @@ public interface VendaItensRepository extends JpaRepository<VendaItens, Integer>
 
     @Query("SELECT p FROM Produto p JOIN VendaItens vi ON vi.produto.id = p.id WHERE vi.venda.id = :vendaId")
     List<Produto> findProdutosByVendaId(int vendaId);
+
 }

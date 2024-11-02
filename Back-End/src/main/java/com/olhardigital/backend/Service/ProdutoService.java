@@ -16,7 +16,7 @@ public class ProdutoService {
     private ProdutoRepository produtoRepository;
 
     public List<Produto> listarTodos() {
-        return produtoRepository.findAll(Sort.by("id"));
+        return produtoRepository.findAllOrderedByQuantidade();
     }
     
     public Produto salvarOuAtualizar(Produto produto) {
