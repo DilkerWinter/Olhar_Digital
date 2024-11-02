@@ -23,7 +23,7 @@ export class VendaCardComponent implements OnInit {
   valorTotalVenda: string = "";
   formaPagamento: string = "Cartão"; 
 
-  mostrarProdutos: boolean = true;
+  mostrarProdutos: boolean = false;
 
   produtos: Produto[] = []; 
   quantidades: number[] = [];

@@ -1,27 +1,25 @@
 <div>
-    <div class="flex justify-between">
+    <div class="flex justify-between items-start">
         <div class="flex flex-col">
-            <p class="text-left">Nome do Cliente: {{nomeCliente}}</p>
-            <p class="text-left">Data da Venda: {{vendaData}}</p>
+            <p class="text-left text-2xl font-bold">Nome do Cliente: {{nomeCliente}}</p>
+            <p class="text-left text-lg mt-4 py-2">Data da Venda: {{vendaData}}</p>
         </div>
-        <div class="flex flex-col text-right">
-            <p>Valor Total: {{valorTotalVenda}}</p>
-            <p>Forma de Pagamento: {{formaPagamento}}</p>
+        <div class="flex flex-col items-end">
+            <p class="text-lg">Forma de Pagamento: {{formaPagamento}}</p>
+            <div class="bg-green-500 w-fit p-2 rounded-2xl mt-4 shadow-lg shadow-gray-600/50">
+                <p class="text-lg text-white">Valor Total: {{valorTotalVenda}}</p>
+            </div>
         </div>
     </div>
 
     <div class="text-center"> 
-        <button (click)="toggleMostrarProdutos()" class="my-2 p-2 bg-gray-700 text-lg text-white rounded-2xl shadow-xl shadow-gray-600/50">
+        <button (click)="toggleMostrarProdutos()" class="my-2 p-2 bg-gray-700 text-lg text-white rounded-2xl shadow-md shadow-gray-600/50">
             {{ mostrarProdutos ? 'Ocultar Produtos' : 'Mostrar Produtos' }}
         </button>
     </div>
-    
-    
-    
 
-
-    <div *ngIf="mostrarProdutos" style="overflow: hidden;">
-        <div *ngFor="let produto of produtos; let i = index">
+    <div *ngIf="mostrarProdutos" class="overflow-hidden max-w-full">
+        <div *ngFor="let produto of produtos; let i = index" class="mb-2 max-w-full">
             <app-produto-venda-card
                 [produto]="produto" 
                 [quantidade]="quantidades[i]">
