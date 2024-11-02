@@ -1,8 +1,7 @@
 import { Injectable, forwardRef, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Produto } from '../models/produto';
-import { error } from 'console';
+import { Produto } from '../models/Produto';
 
 @Injectable({
   providedIn: 'root',  

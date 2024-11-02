@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from "../../shared/header/header.component";
 import { ProdutoCardComponent } from './components/produto-card/produto-card.component';
-import { Produto } from '../../models/produto';
+import { Produto } from '../../models/Produto';
 import { CommonModule } from '@angular/common';
 import { ProdutoService } from '../../services/produto.service';
 import { HttpClientModule } from '@angular/common/http';

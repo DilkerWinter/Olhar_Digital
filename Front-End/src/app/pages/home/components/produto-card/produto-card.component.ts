@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Produto } from '../../../../models/produto';
+import { Produto } from '../../../../models/Produto';
 import { CommonModule } from '@angular/common';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
