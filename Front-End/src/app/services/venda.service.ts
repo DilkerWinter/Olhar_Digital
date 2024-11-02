@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Venda } from '../models/Venda';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { FormaPagamento } from '../models/FormaPagamento';
 
 @Injectable({
   providedIn: 'root'
@@ -23,4 +24,28 @@ export class VendaService {
     const urlDeletarVenda: string = `${this.apiUrl}/${id}`;
     return this.http.delete<void>(urlDeletarVenda);
   }
+
+  getFormaPagamento(): Observable<FormaPagamento[]> {
+    const urlFormaPagamento: string = `${this.apiUrl}/buscaFormasPagamento`;
+    return this.http.get<string[]>(urlFormaPagamento).pipe(
+        map(response => response.map(item => this.mapToFormaPagamento(item)))
+    );
+}
+
+private mapToFormaPagamento(item: string): FormaPagamento {
+    switch (item) {
+        case 'Crédito':
+            return FormaPagamento.CREDITO;
+        case 'Débito':
+            return FormaPagamento.DEBITO;
+        case 'Pix':
+            return FormaPagamento.PIX;
+        case 'Boleto':
+            return FormaPagamento.BOLETO;
+        case 'Dinheiro':
+            return FormaPagamento.DINHEIRO;
+        default:
+            throw new Error(`Forma de pagamento desconhecida: ${item}`);
+    }
+}
 }
