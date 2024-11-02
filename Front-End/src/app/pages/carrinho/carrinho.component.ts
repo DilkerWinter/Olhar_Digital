@@ -16,12 +16,15 @@ import { FormaPagamento, getDescricaoFormaPagamento, getFormaPagamentoPorDescric
 })
 export class CarrinhoComponent implements OnInit {
   itensCarrinho: ItemCarrinho[] = [];
+  
   resumoValorTotal: number = 0;
   resumoValorTotalFormatado: string = '';
+  
   formasPagamento: FormaPagamento[] = []; 
   formasPagamentoDescricao: string[] = [];
   formaPagamentoSelecionada: FormaPagamento | null = null;
-  
+
+  nomeCiente: string = "";
   
 
   constructor(
@@ -56,7 +59,9 @@ export class CarrinhoComponent implements OnInit {
   onFinalizarCompra() {
     const descricao = this.formaPagamentoSelecionada;
     const formaPagamentoSelecionadaEnum = getFormaPagamentoPorDescricao(descricao);
-  
+    this.nomeCiente = this.capitalizeService.capitalize(this.nomeCiente);
+    console.log(this.nomeCiente)
+
   }
   
 
