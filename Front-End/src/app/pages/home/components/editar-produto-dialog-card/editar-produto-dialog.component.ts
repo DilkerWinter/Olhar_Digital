@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Inject, Output } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Produto } from '../../../../models/produto';
+import { Produto } from '../../../../models/Produto';
 import { FormsModule } from '@angular/forms';
 import { ProdutoService } from '../../../../services/produto.service';
 import { HttpClientModule } from '@angular/common/http';

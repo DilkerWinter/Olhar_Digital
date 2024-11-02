@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Produto } from '../../../../models/produto';
+import { Produto } from '../../../../models/Produto';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ProdutoService } from '../../../../services/produto.service';
 import { FormsModule } from '@angular/forms';
