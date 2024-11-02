@@ -3,15 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-adicionado-sucesso',
-  template: `
-    <h1 mat-dialog-title>Sucesso</h1>
-    <div mat-dialog-content>
-      <p>{{ data.message }}</p>
-    </div>
-    <div mat-dialog-actions>
-      <button mat-button (click)="onNoClick()">Fechar</button>
-    </div>
-  `,
+  templateUrl: './adicionado-sucesso.component.html',
 })
 export class AdicionadoSucessoComponent {
   constructor(
