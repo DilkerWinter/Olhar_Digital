@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Produto } from '../../../../models/Produto';
+import { Produto } from '../../../../models/Produto'; 
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { ProdutoService } from '../../../../services/produto.service';
+import { ProdutoService } from '../../../../services/produto.service'; 
 import { FormsModule } from '@angular/forms';
-import { ConfirmarSalvarProdutoComponent } from '../editar-produto-dialog-card/components/confirmar-salvar-produto/confirmar-salvar-produto.component';
+import { ConfirmarSalvarProdutoComponent } from '../produto-card/components/editar-produto-dialog-card/components/confirmar-salvar-produto/confirmar-salvar-produto.component';
 
 @Component({
   selector: 'app-criar-produto-dialog',

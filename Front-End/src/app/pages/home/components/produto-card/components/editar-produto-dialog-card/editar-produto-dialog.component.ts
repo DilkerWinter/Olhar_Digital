@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Inject, Output } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Produto } from '../../../../models/Produto';
+import { Produto } from '../../../../../../models/Produto';
 import { FormsModule } from '@angular/forms';
-import { ProdutoService } from '../../../../services/produto.service';
+import { ProdutoService } from '../../../../../../services/produto.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfirmarDeleteProdutoComponent } from './components/confirmar-delete-produto/confirmar-delete-produto.component';
 import { MatDialog } from '@angular/material/dialog';

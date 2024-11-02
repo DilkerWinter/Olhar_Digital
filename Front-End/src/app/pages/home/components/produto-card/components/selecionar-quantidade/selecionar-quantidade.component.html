@@ -1,0 +1,28 @@
+<div class="bg-white rounded-lg shadow-lg p-6">
+    <h2 class="text-xl font-semibold mb-4">Informe a quantidade</h2>
+    <div class="mb-4">
+        <label for="quantidade" class="block text-sm font-medium text-gray-700">Disponível: {{qntProduto}}</label>
+        <input
+            type="number"
+            [(ngModel)]="quantidadeAdicionada"
+            min="1"
+            class="mt-2 p-2 block w-full border border-gray-300 rounded-2xl shadow-sm"
+        />
+
+    </div>
+    <div class="flex justify-end">
+        <button
+            (click)="onNoClick()"
+            class="mr-2 px-4 py-2 text-white bg-gray-800/50 hover:bg-gray-700/50 rounded-2xl shadow-md shadow-gray-600/50 transition duration-300 ease-in-out hover:shadow-lg hover:scale-105"
+        >
+            Cancelar
+        </button>
+        <button
+            (click)="onAdicionarQuantidade()"
+            [disabled]="quantidadeAdicionada < 1 || quantidadeAdicionada > qntProduto"
+            class="px-4 py-2 text-white bg-green-500 rounded-2xl shadow-md shadow-gray-600/50 transition duration-300 ease-in-out hover:bg-green-600 hover:shadow-lg hover:scale-105"
+        >
+            Adicionar
+        </button>
+    </div>
+</div>

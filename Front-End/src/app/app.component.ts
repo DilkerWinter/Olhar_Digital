@@ -4,7 +4,7 @@ import { HomeComponent } from "./pages/home/home.component";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
-import { EditarProdutoDialogComponent } from "./pages/home/components/editar-produto-dialog-card/editar-produto-dialog.component";
+import { EditarProdutoDialogComponent } from "./pages/home/components/produto-card/components/editar-produto-dialog-card/editar-produto-dialog.component";
 import { ProdutoService } from './services/produto.service';
 import { HeaderComponent } from "./shared/header/header.component";
 import { FooterComponent } from "./shared/footer/footer.component";

@@ -4,7 +4,9 @@ import { CommonModule } from '@angular/common';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatDialog } from '@angular/material/dialog';
-import { EditarProdutoDialogComponent } from '../editar-produto-dialog-card/editar-produto-dialog.component';
+import { EditarProdutoDialogComponent } from './components/editar-produto-dialog-card/editar-produto-dialog.component';
+import { SelecionarQuantidadeComponent } from './components/selecionar-quantidade/selecionar-quantidade.component';
+import { AdicionadoSucessoComponent } from './components/adicionado-sucesso/adicionado-sucesso.component';
 
 @Component({
   selector: 'app-produto-card',
@@ -55,6 +57,20 @@ export class ProdutoCardComponent implements OnInit {
       if (result) {
         this.preencherCard();
         this.produtoUpdated.emit(); 
+      }
+    });
+  }
+  
+  adicionarProdutoCarrinho() {
+    const dialogRef = this.dialog.open(SelecionarQuantidadeComponent, {
+      data: { produto: this.produto }
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.dialog.open(AdicionadoSucessoComponent, {
+          data: { message: 'Produto adicionado ao carrinho com sucesso!' } // Passando uma mensagem, se necessário
+        });
       }
     });
   }

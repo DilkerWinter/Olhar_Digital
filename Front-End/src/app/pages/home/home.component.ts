@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { ProdutoService } from '../../services/produto.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
-import { CriarProdutoDialogComponent } from './components/criar-produto-dialog/criar-produto-dialog.component';
+import { CriarProdutoDialogComponent } from './components/criar-produto-dialog/criar-produto-dialog.component'; 
 
 @Component({
   selector: 'app-home',
