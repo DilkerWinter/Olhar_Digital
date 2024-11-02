@@ -18,4 +18,9 @@ export class VendaService {
       map(response => response.map(data => Venda.fromJSON(data))) 
     );
   }
+
+  deletarVendas(id: number): Observable<void> {
+    const urlDeletarVenda: string = `${this.apiUrl}/${id}`;
+    return this.http.delete<void>(urlDeletarVenda);
+  }
 }

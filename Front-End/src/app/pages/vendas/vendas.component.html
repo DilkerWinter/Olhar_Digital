@@ -3,7 +3,7 @@
 
         <div class="bg-gray-300 p-6 py-2 rounded-2xl shadow-lg shadow-gray-600/50 flex-grow">
             <div *ngFor="let venda of vendas" class="bg-white shadow-lg shadow-gray-600/50 rounded-2xl my-6 p-6">
-                <app-venda-card [venda]="venda"></app-venda-card>
+                <app-venda-card (vendaDeletada)="onVendaDeletada()" [venda]="venda"></app-venda-card>
             </div>
         </div>
     

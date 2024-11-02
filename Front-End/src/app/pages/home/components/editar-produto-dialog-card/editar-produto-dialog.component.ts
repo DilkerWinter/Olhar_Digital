@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ConfirmarDeleteProdutoComponent } from './components/confirmar-delete-produto/confirmar-delete-produto.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmarSalvarProdutoComponent } from './components/confirmar-salvar-produto/confirmar-salvar-produto.component';
+import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-produto-dialog',
@@ -81,23 +82,31 @@ export class EditarProdutoDialogComponent {
 
   deletarProduto() {
     const dialogRef = this.dialog.open(ConfirmarDeleteProdutoComponent);
-
+  
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         if (this.idProduto) {
           this.produtoService.deletarProduto(this.idProduto).subscribe(
             () => {
               console.log('Produto deletado com sucesso');
-              this.dialogRef.close(true); 
-              this.productUpdated.emit(); 
+              this.dialogRef.close(true);
+              this.productUpdated.emit();
             },
             (error: any) => {
               console.error('Erro ao deletar produto:', error);
+              this.openErrorDialog('Não é possível deletar um produto que possui uma venda.\n\nDelete a venda que este produto está e tente novamente.'); 
             }
           );
         }
       }
     });
   }
+  
+  openErrorDialog(message: string): void {
+    this.dialog.open(ErrorDialogComponent, {
+      data: { message },
+    });
+  }
+  
   
 }

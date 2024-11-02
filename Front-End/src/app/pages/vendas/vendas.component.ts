@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { VendaService } from '../../services/venda.service';
 import { Venda } from '../../models/Venda';
 import { VendaCardComponent } from './components/venda-card/venda-card.component';
@@ -20,6 +20,9 @@ export class VendasComponent implements OnInit {
   valorTotalVendas: string = "";
   valorTotalVendasMensal: string = "";
   valorTotalVendasAnual: string = "";
+
+  @ViewChild(VendaCardComponent) vendaCardComponent!: VendaCardComponent;
+
   constructor(private vendaService: VendaService) {}
 
   ngOnInit(): void {
@@ -72,6 +75,10 @@ export class VendasComponent implements OnInit {
       .reduce((total, venda) => total + venda.getValorTotal(), 0);
   
     this.valorTotalVendasAnual = `${this.valorTotalPrefix} ${this.valorTotalAnual.toFixed(2).replace('.', ',')}` || "R$ 0,00";
+  }
+
+  onVendaDeletada(){
+    this.ngOnInit();
   }
   
 }

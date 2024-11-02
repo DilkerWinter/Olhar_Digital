@@ -1,6 +1,7 @@
 import { Produto } from "./Produto";
 
 export class Venda {
+    private id: number | null; 
     private dataVenda: string;
     private formaPagamento: string;
     private nomeCliente: string;
@@ -9,6 +10,7 @@ export class Venda {
     private quantidadeProduto: number[];
 
     constructor(
+        id: number | null, 
         dataVenda: string,
         formaPagamento: string,
         nomeCliente: string,
@@ -16,6 +18,7 @@ export class Venda {
         produtos: Produto[],
         quantidadeProduto: number[] = [], 
     ) {
+        this.id = id;
         this.dataVenda = dataVenda;
         this.formaPagamento = formaPagamento;
         this.nomeCliente = nomeCliente;
@@ -49,6 +52,7 @@ export class Venda {
         }
     
         return new Venda(
+            vendaData?.id || 0,
             vendaData?.dataVenda || '', 
             vendaData?.formaPagamento || '', 
             vendaData?.nomeCliente || '', 
@@ -56,6 +60,14 @@ export class Venda {
             produtos,
             quantidadeProduto
         );
+    }
+
+    getId(): number | null {
+        return this.id;
+    }
+
+    setId(value: number | null) {
+        this.id = value;
     }
     
 

@@ -1,21 +1,30 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Venda } from '../../../../models/Venda';
 import { Produto } from '../../../../models/Produto';
 import { CommonModule } from '@angular/common';
 import { ProdutoVendaCardComponent } from "../produto-venda-card/produto-venda-card.component";
 import { CapitalizeService } from '../../../../services/Utils/captalize-strings.service';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MatDialog } from '@angular/material/dialog';
+import { DeletarConfirmarVendaComponent } from './deletar-confirmar-venda/deletar-confirmar-venda.component';
+import { VendaService } from '../../../../services/venda.service';
 
 @Component({
   selector: 'app-venda-card',
   standalone: true,
-  imports: [CommonModule, ProdutoVendaCardComponent],
+  imports: [CommonModule, ProdutoVendaCardComponent, FontAwesomeModule],
   templateUrl: './venda-card.component.html',
   styleUrls: ['./venda-card.component.css']
 })
 export class VendaCardComponent implements OnInit {
   @Input() venda!: Venda;
 
-  constructor(private capitalizeService: CapitalizeService){}
+  fatTrash = faTrash;
+
+  @Output() vendaDeletada = new EventEmitter<void>();
+
+  constructor(private capitalizeService: CapitalizeService, private dialog: MatDialog, private vendaService: VendaService) {}
 
   valorTotalPrefix: string = "R$";
   nomeCliente: string = "";
@@ -29,10 +38,10 @@ export class VendaCardComponent implements OnInit {
   quantidades: number[] = [];
 
   ngOnInit(): void {
-    this.preencherCard();
+    this.populateCard();
   }
 
-  preencherCard() {
+  populateCard() {
     if (this.venda) {
       this.nomeCliente = this.capitalizeService.capitalize(this.venda.getNomeCliente()) || "Cliente não disponível"; 
       this.vendaData = this.formatarData(this.venda.getDataVenda()) || "Data não disponível"; 
@@ -58,4 +67,28 @@ export class VendaCardComponent implements OnInit {
   toggleMostrarProdutos() {
     this.mostrarProdutos = !this.mostrarProdutos;
   }
+
+  deletarVenda(id: number | null): void {
+    if (id === null) {
+      console.warn('ID for deletion is null');
+      return; // Prevents execution if ID is null
+    }
+  
+    const dialogRef = this.dialog.open(DeletarConfirmarVendaComponent);
+    
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.vendaService.deletarVendas(id).subscribe({
+          next: () => {
+            this.vendaDeletada.emit(); 
+          },
+          error: (err) => {
+            console.error('Erro ao deletar venda:', err);
+            // Consider notifying the user about the error
+          }
+        });
+      }
+    });
+  }
+  
 }
