@@ -1,7 +1,6 @@
-// tailwind.config.js
 module.exports = {
   content: [
-    "./src/**/*.{html,ts}", // Add paths to all templates and components
+    "./src/**/*.{html,ts}", 
   ],
   theme: {
     extend: {
@@ -12,7 +11,7 @@ module.exports = {
 
       spacing: {
         'card_home_container_h': '35rem',
-        'header_spacing': '15rem',
+        'header_spacing': '14rem',
       }
     },
   },
