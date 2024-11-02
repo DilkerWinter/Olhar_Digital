@@ -1,0 +1,24 @@
+<div>
+    <div class="flex justify-between">
+        <div class="flex flex-col">
+            <p class="text-left">Nome do Cliente: {{nomeCliente}}</p>
+            <p class="text-left">Data da Venda: {{vendaData}}</p>
+        </div>
+        <div class="flex flex-col text-right">
+            <p>Valor Total: {{valorTotalVenda}}</p>
+            <p>Forma de Pagamento: {{formaPagamento}}</p>
+        </div>
+    </div>
+    
+    <hr class="my-4 border-t border-gray-300 border-4 rounded-full shadow-gray-600/50 shadow-sm" />   
+    
+    
+    <div >
+        <div *ngFor="let produto of produtos; let i = index">
+            <app-produto-venda-card
+                [produto]="produto" 
+                [quantidade]="quantidades[i]">
+            </app-produto-venda-card>
+        </div>
+    </div>
+</div>

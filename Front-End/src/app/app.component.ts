@@ -8,6 +8,7 @@ import { EditarProdutoDialogComponent } from "./pages/home/components/editar-pro
 import { ProdutoService } from './services/produto.service';
 import { HeaderComponent } from "./shared/header/header.component";
 import { FooterComponent } from "./shared/footer/footer.component";
+import { VendasComponent } from './pages/vendas/vendas.component';
 
 
 @Component({
