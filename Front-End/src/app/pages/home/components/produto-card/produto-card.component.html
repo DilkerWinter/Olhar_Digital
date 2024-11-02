@@ -1,56 +1,118 @@
-<div
-  class="bg-white h-card_home_container_h rounded-3xl z-50 flex flex-col shadow-xl shadow-black/50"
->
-  <div
-    class="relative h-1/2 flex items-center justify-center overflow-hidden rounded-t-3xl z-10"
-  >
-    <img src="{{ urlImagem }}" class="w-full h-full object-cover" />
-    
-    <button 
-      class="absolute top-2 right-2 bg-gray-800/50 rounded-3xl p-1 pl-2 pr-2 text-white cursor-pointer shadow-md shadow-gray-600/50 transition duration-300 ease-in-out hover:bg-gray-600 hover:shadow-lg hover:scale-105"
-      (click)="onEditClick()">
+<div class="relative">
+  <div *ngIf="qntProduto > 0; else disableCard">
+    <div
+      class="bg-white h-card_home_container_h rounded-3xl z-50 flex flex-col shadow-xl shadow-black/50"
+    >
+      <div
+        class="relative h-1/2 flex items-center justify-center overflow-hidden rounded-t-3xl z-10"
+      >
+        <img
+          src="{{ urlImagem }}"
+          onerror="this.onerror=null; this.src='path/to/default/image.jpg';"
+          class="w-full h-full object-cover"
+        />
+
+        <button
+          class="absolute top-2 right-2 bg-gray-800/50 rounded-3xl p-1 pl-2 pr-2 text-white cursor-pointer shadow-md shadow-gray-600/50 transition duration-300 ease-in-out hover:bg-gray-600 hover:shadow-lg hover:scale-105"
+          (click)="onEditClick()"
+          aria-label="Edit product"
+        >
+          <fa-icon class="text-xl" [icon]="faPen"></fa-icon>
+        </button>
+      </div>
+
+      <div class="flex flex-col p-2">
+        <div class="flex justify-between items-center m-4 p-2">
+          <p class="font-bold text-left">{{ nomeProduto }}</p>
+          <div class="bg-emerald-500 rounded-3xl">
+            <p class="text-white text-right p-2">
+              {{ textPrefixValor }} {{ valorProduto }}
+            </p>
+          </div>
+        </div>
+        <div class="flex justify-between items-center m-4">
+          <div class="bg-gray-300 rounded-3xl max-w-xs">
+            <p
+              class="p-2 text-left overflow-hidden text-ellipsis whitespace-nowrap"
+            >
+              {{ descProduto }}
+            </p>
+          </div>
+          <p class="mt-4 text-gray-500 text-right pb-4">
+            {{ qntProduto }} {{ textPrefixQnt }}
+          </p>
+        </div>
+
+        <div class="flex justify-center mt-6 mb-4">
+          <input
+            type="button"
+            class="bg-gray-700 rounded-3xl p-4 pr-12 pl-12 w-fit text-lg text-white shadow-md shadow-gray-600/50 transition duration-300 ease-in-out hover:bg-gray-800 hover:shadow-lg hover:scale-105 cursor-pointer"
+            value="Adicionar"
+            (click)="adicionarProdutoCarrinho()"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #disableCard>
+    <button
+      class="absolute top-2 right-2 z-50 bg-gray-800/50 rounded-3xl p-1 pl-2 pr-2 text-white cursor-pointer shadow-md shadow-gray-600/50 transition duration-300 ease-in-out hover:bg-gray-600 hover:shadow-lg hover:scale-105"
+      (click)="onEditClick()"
+      aria-label="Edit product"
+    >
       <fa-icon class="text-xl" [icon]="faPen"></fa-icon>
     </button>
-  </div>
-
-  <div class="flex flex-col p-2">
-    <div class="flex justify-between items-center m-4 p-2">
-      <p class="font-bold text-left">{{ nomeProduto }}</p>
-      <div class="bg-emerald-500 rounded-3xl">
-        <p class="text-white text-right p-2">
-          {{ textPrefixValor }} {{ valorProduto }}
-        </p>
-      </div>
-    </div>
-    <div class="flex justify-between items-center m-4">
-      <div class="bg-gray-300 rounded-3xl max-w-xs">
-        <p
-          class="p-2 text-left overflow-hidden text-ellipsis whitespace-nowrap"
-        >
-          {{ descProduto }}
-        </p>
-      </div>
-      <p class="mt-4 text-gray-500 text-right pb-4">
-        {{ qntProduto }} {{ textPrefixQnt }}
-      </p>
-    </div>
-
-    <div class="flex justify-center mt-6 mb-4">
-      <input
-        type="button"
-        *ngIf="qntProduto > 0; else disabledButton"
-        class="bg-gray-700 rounded-3xl p-4 pr-12 pl-12 w-fit text-lg text-white shadow-md shadow-gray-600/50 transition duration-300 ease-in-out hover:bg-gray-800 hover:shadow-lg hover:scale-105 cursor-pointer"
-        value="Adicionar"
-        (click)="adicionarProdutoCarrinho()"
-      />
-
-      <ng-template #disabledButton>
-        <input
-          type="button"
-          class="bg-gray-300 rounded-3xl p-4 pr-12 pl-12 w-fit text-lg text-white shadow-md cursor-default"
-          value="Adicionar"
+    <div
+      class="bg-white h-card_home_container_h rounded-3xl z-49 flex flex-col shadow-xl shadow-black/50"
+    >
+      <div
+        class="relative h-1/2 flex items-center justify-center overflow-hidden rounded-t-3xl z-10"
+      >
+        <img
+          src="{{ urlImagem }}"
+          onerror="this.onerror=null; this.src='path/to/default/image.jpg';"
+          class="w-full h-full object-cover opacity-30"
         />
-      </ng-template>
+        <div
+          class="absolute inset-0 bg-gray-400 opacity-50 flex items-center justify-center"
+        >
+          <p class="text-white font-bold">Produto Indisponível</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col p-2 opacity-50">
+        <div class="flex justify-between items-center m-4 p-2">
+          <p class="font-bold text-left">{{ nomeProduto }}</p>
+          <div class="bg-emerald-500 rounded-3xl">
+            <p class="text-white text-right p-2">
+              {{ textPrefixValor }} {{ valorProduto }}
+            </p>
+          </div>
+        </div>
+        <div class="flex justify-between items-center m-4">
+          <div class="bg-gray-300 rounded-3xl max-w-xs">
+            <p
+              class="p-2 text-left overflow-hidden text-ellipsis whitespace-nowrap"
+            >
+              {{ descProduto }}
+            </p>
+          </div>
+          <p class="mt-4 text-gray-500 text-right pb-4">
+            {{ qntProduto }} {{ textPrefixQnt }}
+          </p>
+        </div>
+
+        <div class="flex justify-center mt-6 mb-4">
+          <input
+            type="button"
+            class="bg-white rounded-3xl p-4 pr-12 pl-12 w-fit text-lg text-white shadow-md cursor-default"
+            value="Adicionar"
+            disabled
+          />
+        </div>
+      </div>
     </div>
-  </div>
+  </ng-template>
+
 </div>
