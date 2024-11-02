@@ -94,7 +94,8 @@ export class EditarProdutoDialogComponent {
             },
             (error: any) => {
               console.error('Erro ao deletar produto:', error);
-              this.openErrorDialog('Não é possível deletar um produto que possui uma venda.\n\nDelete a venda que este produto está e tente novamente.'); 
+              this.openErrorDialog('Não é possível deletar um produto que possui uma venda.<br><br>Delete a venda que este produto está e tente novamente.');
+
             }
           );
         }
