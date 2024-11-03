@@ -10,6 +10,8 @@ import { ProdutosCarrinhoCardComponent } from './components/produtos-carrinho-ca
 import { Venda } from '../../models/Venda';
 import { response } from 'express';
 import { error } from 'console';
+import { ErrorDialogComponent } from '../home/components/produto-card/components/editar-produto-dialog-card/components/error-dialog/error-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-carrinho',
@@ -32,6 +34,7 @@ export class CarrinhoComponent implements OnInit {
   
 
   constructor(
+    private dialog: MatDialog,
     private carrinhoService: CarrinhoService,
     private vendasService: VendaService,
     private capitalizeService: CapitalizeService
@@ -62,49 +65,51 @@ export class CarrinhoComponent implements OnInit {
   }
 
   onFinalizarCompra() {
-
-
     if (!this.formaPagamentoSelecionada) {
-      alert('Por favor, selecione uma forma de pagamento.');
+      this.openErrorDialog('Por favor, selecione uma forma de pagamento.');
       return;
-  }
-  
-  const formaPagamentoSelecionadaEnum = getFormaPagamentoPorDescricao(this.formaPagamentoSelecionada);
-  
-  if (formaPagamentoSelecionadaEnum === null) {
-      alert('Forma de pagamento inválida.');
+    }
+    
+    const formaPagamentoSelecionadaEnum = getFormaPagamentoPorDescricao(this.formaPagamentoSelecionada);
+    
+    if (formaPagamentoSelecionadaEnum === null) {
+      this.openErrorDialog('Forma de pagamento inválida.');
       return;
-  }
-
+    }
+  
     this.nomeCliente = this.capitalizeService.capitalize(this.nomeCliente);
-
+  
     const novaVenda = new Venda(
-        null, 
-        new Date().toISOString().split('T')[0], 
-        formaPagamentoSelecionadaEnum, 
-        this.nomeCliente,
-        this.resumoValorTotal,
-        this.itensCarrinho.map(item => item.produto),
-        this.itensCarrinho.map(item => item.quantidade) 
+      null, 
+      new Date().toISOString().split('T')[0], 
+      formaPagamentoSelecionadaEnum, 
+      this.nomeCliente,
+      this.resumoValorTotal,
+      this.itensCarrinho.map(item => item.produto),
+      this.itensCarrinho.map(item => item.quantidade) 
     );
-
+  
     this.vendasService.criarVenda(novaVenda).subscribe(
       response => {
-        alert('Compra finalizada')
+        this.openErrorDialog('Compra finalizada'); 
         this.carrinhoService.limparCarrinho();
         this.ngOnInit();
       },
       error => {
-        alert('Houve um erro ao finalizar a compra. Tente novamente.');
+        this.openErrorDialog('Houve um erro ao finalizar a compra. Tente novamente.');
       }
-    )
-
+    );
   }
-
   
   onItemRemovido() {
     this.ngOnInit(); 
   }
-
+  
+  openErrorDialog(message: string): void {
+    this.dialog.open(ErrorDialogComponent, {
+      data: { message },
+    });
+  }
+  
 
 }
