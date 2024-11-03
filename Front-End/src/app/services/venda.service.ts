@@ -32,6 +32,23 @@ export class VendaService {
     );
 }
 
+criarVenda(venda: Venda): Observable<Venda> {
+  const payload = {
+      venda: {
+          formaPagamento: venda.getFormaPagamento(),
+          nomeCliente: venda.getNomeCliente(),
+          dataVenda: venda.getDataVenda(),
+          valorTotal: venda.getValorTotal()
+      },
+      itens: venda.getProdutos().map((produto, index) => ({
+          produto: { id: produto.getId() }, // Acesso ao ID do produto
+          quantidade: venda.getQuantidadeProduto()[index] // Acesso à quantidade correspondente
+      }))
+  };
+
+  return this.http.post<Venda>(this.apiUrl, payload);
+}
+
 private mapToFormaPagamento(item: string): FormaPagamento {
     switch (item) {
         case 'Crédito':

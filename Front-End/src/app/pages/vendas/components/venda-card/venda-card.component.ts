@@ -20,7 +20,7 @@ import { VendaService } from '../../../../services/venda.service';
 export class VendaCardComponent implements OnInit {
   @Input() venda!: Venda;
 
-  fatTrash = faTrash;
+  faTrash = faTrash;
 
   @Output() vendaDeletada = new EventEmitter<void>();
 

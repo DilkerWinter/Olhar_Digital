@@ -10,7 +10,7 @@ export function getDescricaoFormaPagamento(forma: FormaPagamento): string {
     return forma;
 }
 
-export function getFormaPagamentoPorDescricao(descricao: string | null): FormaPagamento | null {
+export function getFormaPagamentoPorDescricao(descricao: string ): FormaPagamento | null {
     if (descricao === null) return null;
 
     for (const [key, value] of Object.entries(FormaPagamento)) {

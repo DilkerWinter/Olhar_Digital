@@ -6,11 +6,15 @@ import { CapitalizeService } from '../../services/Utils/captalize-strings.servic
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FormaPagamento, getDescricaoFormaPagamento, getFormaPagamentoPorDescricao } from '../../models/FormaPagamento';
+import { ProdutosCarrinhoCardComponent } from './components/produtos-carrinho-card/produtos-carrinho-card.component';
+import { Venda } from '../../models/Venda';
+import { response } from 'express';
+import { error } from 'console';
 
 @Component({
   selector: 'app-carrinho',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ProdutosCarrinhoCardComponent],
   templateUrl: './carrinho.component.html',
   styleUrls: ['./carrinho.component.css']
 })
@@ -24,7 +28,7 @@ export class CarrinhoComponent implements OnInit {
   formasPagamentoDescricao: string[] = [];
   formaPagamentoSelecionada: FormaPagamento | null = null;
 
-  nomeCiente: string = "";
+  nomeCliente: string = "";
   
 
   constructor(
@@ -34,6 +38,7 @@ export class CarrinhoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.itensCarrinho = [];
     this.itensCarrinho = this.carrinhoService.obterCarrinho();
     this.calcularValorTotal();
     this.preencherFormaPagamento();
@@ -57,13 +62,49 @@ export class CarrinhoComponent implements OnInit {
   }
 
   onFinalizarCompra() {
-    const descricao = this.formaPagamentoSelecionada;
-    const formaPagamentoSelecionadaEnum = getFormaPagamentoPorDescricao(descricao);
-    this.nomeCiente = this.capitalizeService.capitalize(this.nomeCiente);
-    console.log(this.nomeCiente)
 
+
+    if (!this.formaPagamentoSelecionada) {
+      alert('Por favor, selecione uma forma de pagamento.');
+      return;
   }
   
+  const formaPagamentoSelecionadaEnum = getFormaPagamentoPorDescricao(this.formaPagamentoSelecionada);
+  
+  if (formaPagamentoSelecionadaEnum === null) {
+      alert('Forma de pagamento inválida.');
+      return;
+  }
+
+    this.nomeCliente = this.capitalizeService.capitalize(this.nomeCliente);
+
+    const novaVenda = new Venda(
+        null, 
+        new Date().toISOString().split('T')[0], 
+        formaPagamentoSelecionadaEnum, 
+        this.nomeCliente,
+        this.resumoValorTotal,
+        this.itensCarrinho.map(item => item.produto),
+        this.itensCarrinho.map(item => item.quantidade) 
+    );
+
+    this.vendasService.criarVenda(novaVenda).subscribe(
+      response => {
+        alert('Compra finalizada')
+        this.carrinhoService.limparCarrinho();
+        this.ngOnInit();
+      },
+      error => {
+        alert('Houve um erro ao finalizar a compra. Tente novamente.');
+      }
+    )
+
+  }
+
+  
+  onItemRemovido() {
+    this.ngOnInit(); 
+  }
 
 
 }
