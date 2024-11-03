@@ -12,6 +12,7 @@ import { response } from 'express';
 import { error } from 'console';
 import { ErrorDialogComponent } from '../home/components/produto-card/components/editar-produto-dialog-card/components/error-dialog/error-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { SuccessDialogComponent } from './components/success-dialog/success-dialog.component';
 
 @Component({
   selector: 'app-carrinho',
@@ -91,7 +92,7 @@ export class CarrinhoComponent implements OnInit {
   
     this.vendasService.criarVenda(novaVenda).subscribe(
       response => {
-        this.openErrorDialog('Compra finalizada'); 
+        this.openSucessDialog("Compra finalizada."); 
         this.carrinhoService.limparCarrinho();
         this.ngOnInit();
       },
@@ -105,6 +106,12 @@ export class CarrinhoComponent implements OnInit {
     this.ngOnInit(); 
   }
   
+  openSucessDialog(message: string): void {
+    this.dialog.open(SuccessDialogComponent, {
+      data: { message },
+    });
+  }
+
   openErrorDialog(message: string): void {
     this.dialog.open(ErrorDialogComponent, {
       data: { message },
