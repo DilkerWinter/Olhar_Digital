@@ -1,6 +1,7 @@
 package com.olhardigital.backend.Controller;
 
 import com.olhardigital.backend.Model.Produto;
+import com.olhardigital.backend.Model.Utils.FormaPagamento;
 import com.olhardigital.backend.Model.Utils.VendaResponse;
 import com.olhardigital.backend.Model.Venda;
 import com.olhardigital.backend.Model.Utils.VendaRequest;
@@ -9,8 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/venda")
@@ -57,5 +57,18 @@ public class VendaController {
     }
 
 
+    @GetMapping("/buscaFormasPagamento")
+    public ResponseEntity<List<Map<String, String>>> buscarVendaFormasPagamento() {
+        List<Map<String, String>> formasPagamento = new ArrayList<>();
+
+        for (FormaPagamento forma : FormaPagamento.values()) {
+            Map<String, String> formaMap = new HashMap<>();
+            formaMap.put("formaPagamento", forma.name());
+            formaMap.put("descricao", forma.getDescricao());
+            formasPagamento.add(formaMap);
+        }
+
+        return ResponseEntity.ok(formasPagamento);
+    }
 
 }

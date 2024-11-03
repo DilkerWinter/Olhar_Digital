@@ -20,7 +20,7 @@ import { VendaService } from '../../../../services/venda.service';
 export class VendaCardComponent implements OnInit {
   @Input() venda!: Venda;
 
-  fatTrash = faTrash;
+  faTrash = faTrash;
 
   @Output() vendaDeletada = new EventEmitter<void>();
 
@@ -71,7 +71,7 @@ export class VendaCardComponent implements OnInit {
   deletarVenda(id: number | null): void {
     if (id === null) {
       console.warn('ID for deletion is null');
-      return; // Prevents execution if ID is null
+      return;
     }
   
     const dialogRef = this.dialog.open(DeletarConfirmarVendaComponent);
@@ -84,7 +84,6 @@ export class VendaCardComponent implements OnInit {
           },
           error: (err) => {
             console.error('Erro ao deletar venda:', err);
-            // Consider notifying the user about the error
           }
         });
       }

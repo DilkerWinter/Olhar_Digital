@@ -1,13 +1,13 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { CommonModule } from '@angular/common'; // Import CommonModule for common directives
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-error-dialog',
   standalone: true,
-  imports: [CommonModule], // Include CommonModule for ngIf, ngFor, etc.
+  imports: [CommonModule], 
   templateUrl: './error-dialog.component.html',
-  styleUrls: ['./error-dialog.component.css'] // Fixed styleUrl to styleUrls
+  styleUrls: ['./error-dialog.component.css']
 })
 export class ErrorDialogComponent {
   constructor(

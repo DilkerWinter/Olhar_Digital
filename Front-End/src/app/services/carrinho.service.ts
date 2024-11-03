@@ -24,23 +24,34 @@ export class CarrinhoService {
 
   obterCarrinho(): ItemCarrinho[] {
     const carrinho = localStorage.getItem(this.STORAGE_KEY);
+  
     if (!carrinho) return [];
   
-    const parsedCarrinho = JSON.parse(carrinho);
-    return parsedCarrinho.map((item: any) => 
-      new ItemCarrinho(
-        new Produto(
-          item.produto.id,
-          item.produto.nome,
-          item.produto.descricao,
-          item.produto.valor,
-          item.produto.quantidade,
-          item.produto.urlImagem
-        ),
-        item.quantidade
-      )
-    );
+    try {
+      const parsedCarrinho = JSON.parse(carrinho);
+      return parsedCarrinho.map((item: any) => {
+        if (!item || !item._produto || typeof item._produto.id === 'undefined') {
+          console.error('Item inválido:', item);
+          return null; 
+        }
+        return new ItemCarrinho(
+          new Produto(
+            item._produto.id,         
+            item._produto.nome,       
+            item._produto.descricao,  
+            item._produto.valor,      
+            item._produto.quantidade, 
+            item._produto.urlImagem   
+          ),
+          item._quantidade            
+        );
+      }).filter((item: any) => item !== null);
+    } catch (error) {
+      console.error('Erro ao analisar carrinho:', error);
+      return [];
+    }
   }
+  
   
   
 
@@ -51,4 +62,15 @@ export class CarrinhoService {
   limparCarrinho(): void {
     localStorage.removeItem(this.STORAGE_KEY);
   }
+
+  removerProduto(item: ItemCarrinho): void {
+    const carrinho = this.obterCarrinho();
+    const index = carrinho.findIndex(cartItem => cartItem.produto.getId() === item.produto.getId());
+  
+    if (index > -1) {
+      carrinho.splice(index, 1);
+      this.salvarCarrinho(carrinho);
+    }
+  }
+  
 }
