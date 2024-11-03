@@ -1,5 +1,5 @@
 <div class="bg-white w-full mt-4 mb-6 rounded-2xl shadow-gray-700/50 shadow flex">
-    <div class="flex-shrink-0 w-1/3">
+    <div class="relative flex-shrink-0 w-1/3 overflow-hidden h-72">
         <img src="{{produtoUrlImg}}" alt="Imagem do Produto" class="w-full h-full object-cover rounded-l-2xl">
     </div>
 
@@ -16,14 +16,14 @@
             <p>{{produtoDesc}}</p>
         </div>
         <div class="flex justify-between mb-2 p-1">
-            <p>Valor Unitário: {{produtoValor}}</p>
+            <p>Valor Unitário: R$ {{produtoValor}}</p>
         </div>
         <div class="mt-auto flex flex-col items-end">
             <div class="bg-gray-700 rounded-2xl p-2 mb-2 text-white">
                 <p>Quantidade: {{quantidade}}</p>
             </div>
             <div class="bg-green-500 rounded-2xl p-2 text-white">
-                <p>Total Preço: {{produtoValorTotal}}</p>
+                <p>Total Preço: R$ {{produtoValorTotal}}</p>
             </div>
         </div>
     </div>
